@@ -14,7 +14,7 @@ RUN echo 'deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' >> /
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C2518248EEA14886 && \
     apt-get update && \
     apt-get install -y openjdk-8-jdk && \
-    apt-get clean &&
+    apt-get clean
 
 RUN update-alternatives --config java
 
