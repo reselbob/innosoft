@@ -1,0 +1,20 @@
+docker build -t demo/open-jdk:8 .
+
+docker run --rm -v $PWD/app:/app -w /app demo/open-jdk:8 javac Main.java
+
+docker run --rm -v $PWD/app:/app -w /app demo/open-jdk:8 java Main
+
+
+#Maven
+
+
+docker build -f Dockerfile-maven -t demo/maven:3.3-jdk-8 .
+
+cd app
+
+
+docker run -it --rm -v "$PWD":/app -w /app demo/maven:3.3-jdk-8 mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -Dinte
+
+docker run -it --rm -v "$PWD"/my-app:/app -w /app demo/maven:3.3-jdk-8 mvn package
+
+docker run -it --rm -v "$PWD"/my-app:/app -w /app demo/maven:3.3-jdk-8 java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
