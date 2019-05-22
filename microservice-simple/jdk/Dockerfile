@@ -1,6 +1,6 @@
 FROM phusion/baseimage:0.9.17
 
-RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main universe" > /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu bionic main universe" > /etc/apt/sources.list
 
 RUN apt-get -y update
 
