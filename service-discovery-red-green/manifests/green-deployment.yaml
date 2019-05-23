@@ -1,0 +1,26 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: echocolor_green
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: echocolor
+      color: green
+  template:
+    metadata:
+      labels:
+        app: echocolor
+        color: green
+    spec:
+      containers:
+        - name: pinger
+          image: reselbob/echocolor:v0.1
+          ports:
+            -
+              containerPort: 3000
+          env:
+            - name: ECHO_COLOR_ECHO
+              value: GREEN
