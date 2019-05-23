@@ -22,5 +22,5 @@ spec:
             -
               containerPort: 3000
           env:
-            - name: ECHO_COLOR_ECHO
+            - name: COLOR_ECHO_COLOR
               value: RED
