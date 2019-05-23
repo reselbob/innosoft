@@ -2,7 +2,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: echocolor_red
+  name: echocolor-red
 spec:
   replicas: 1
   selector:
