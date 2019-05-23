@@ -16,7 +16,7 @@ spec:
         color: green
     spec:
       containers:
-        - name: pinger
+        - name: echocolor-green
           image: reselbob/echocolor:v0.1
           ports:
             -
