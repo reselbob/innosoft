@@ -8,7 +8,7 @@ const color  = process.env.COLOR_ECHO_COLOR || "NO_COLOR";
 
 
 const handleRequest = function(request, response) {
-    const str = JSON.stringify({color, date: newDate()}, null, 4);
+    const str = JSON.stringify({color, date: new Date()}, null, 4);
     response.writeHead(200);
     response.end(str);
     console.log(str);
