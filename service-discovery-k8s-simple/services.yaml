@@ -24,7 +24,7 @@ spec:
     targetPort: 3000
     name: http
   type: NodePort
-
+---
 apiVersion: v1
 kind: Service
 metadata:
