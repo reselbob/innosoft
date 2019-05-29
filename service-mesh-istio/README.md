@@ -31,18 +31,16 @@ Make sure the pods are running, so WAIT until they're all up. (Yes, this can tak
 
 **Step 9:** `kubectl get services`
 
-
-
 **Step 10:** `kubectl get pods`
 
-##Confirm
+## Confirm BookInfo application installation
 
 **Step 11:** `kubectl exec -it $(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}') -c ratings -- curl productpage:9080/productpage | grep -o "<title>.*</title>"`
 
-##Define Ingress
+## Define Ingress
 **Step 12:** `kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml`
 
-##Confirm
+## Confirm Gateway
 **Step 13:** `kubectl get gateway`
 
 ##Determine Ingress HOST
@@ -61,7 +59,7 @@ Make sure the pods are running, so WAIT until they're all up. (Yes, this can tak
 
 **Step 18:** `export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT`
 
-## Confirmation
+## Confirm application is up and running against Gateway URL
 
 **Step 19:** `curl -s http://${GATEWAY_URL}/productpage | grep -o "<title>.*</title>"`
 

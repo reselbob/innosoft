@@ -136,7 +136,11 @@ in Step 6.)
 Once you've copied the `config` file from the `kmaster` VM to the `.kube` directory on your hosting machine, you
 should be able to interact with the cluster.
 
-**Step 10:** To test that you can see the newly created Vagrant cluster, execute the following command to list
+**Step 10:** Type the following command to exit the `ssh` session on `kmaster`.
+
+`exit`
+
+**Step 11:** To test that you can see the newly created Vagrant cluster, execute the following command to list
 all the nodes in the cluster.
 
 `kubectl get nodes`
@@ -147,7 +151,7 @@ Removing the Kubernetes cluster from the your local hosting machine is a two ste
 removed the cluster information from the Kubernetes configuration. Then, we need to remove the physical VMs from
 the the host machine.
 
-**Step 11:** To removes user, cluster and context information from Kubernetes config, execute the following
+**Step 12:** To removes user, cluster and context information from Kubernetes config, execute the following
 commands:
 
 `kubectl config unset users.kubernetes.admin`
@@ -156,7 +160,7 @@ commands:
 
 `kubectl config unset clusters.kubernetes`
 
-**Step 11:** To remove the physical Vagrant VMs from your local system, execute the following
+**Step 13:** To remove the physical Vagrant VMs from your local system, execute the following
 bash script"
 
 `sh ./nuke-virtual-machines.sh`
