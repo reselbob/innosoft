@@ -19,6 +19,8 @@
 
 **Step 5:** `kubectl get svc -n istio-system`
 
+Make sure the pods are running, so WAIT until they're all up. (Yes, this can take time.)
+
 **Step 6:** `kubectl get pods -n istio-system`
 
 ## Install Sample App
@@ -28,6 +30,8 @@
 **Step 8:** `kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml`
 
 **Step 9:** `kubectl get services`
+
+
 
 **Step 10:** `kubectl get pods`
 
