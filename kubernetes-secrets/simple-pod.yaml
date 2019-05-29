@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-pod
+spec:
+  containers:
+    -
+      env:
+        - name: THE_FIRST_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: A_SECRET
+              name: mysecrets
+        - name: THE_SECOND_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: B_SECRET
+              name: mysecrets
+      image: "reselbob/pinger:v2.1"
+      imagePullPolicy: Always
+      name: simple-container
+      ports:
+        - containerPort: 3000

@@ -13,13 +13,10 @@ spec:
     metadata:
       labels:
         run: nginx
-
     spec:
-
       volumes:
       - name: shared-volume
         emptyDir: {}
-
       initContainers:
       - name: busybox
         image: busybox
@@ -28,7 +25,6 @@ spec:
           mountPath: /nginx-data
         command: ["/bin/sh"]
         args: ["-c", "echo '<h1>Hello Kubernetes</h1>' > /nginx-data/index.html"]
-
       containers:
       - image: nginx
         name: nginx
