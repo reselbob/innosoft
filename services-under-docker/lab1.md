@@ -62,7 +62,7 @@ CMD ["npm", "start"]
 ```
 
 
-## Run the application in a docker container application
+## Run the application in a docker container
 
 **Step 7:** To start the application in a container, execute the following command:
 
@@ -161,13 +161,19 @@ First we need to kill the container that is already running the Node.JS applicat
 container ID and the run the Docker command, `rm` to nuke the container.
 
 
-**Step 11:** To determine the `id` of the Node.JS application, execute the following command:
+**Step 11:** To determine the `id` of the Node.JS application, in a **separate terminal**, execute the following command:
 
 `docker ps -a`
 
+
+```text
+CONTAINER ID        IMAGE                    COMMAND                  CREATED             STATUS              PORTS                      NAMES
+154a94b58b87        innosoft/demo-monolith   "npm start"              59 seconds ago      Up 57 seconds       0.0.0.0:3000->3000/tcp     monolith
+8cc0f8f9db0c        mongo:4.0                "docker-entrypoint.s…"   4 minutes ago       Up 4 minutes        0.0.0.0:27017->27017/tcp   mongo4
+```
 **Step 12:** To remove the Node.JS container from memory, run the following command:
 
-`docker rm CONTAINER_ID`
+`docker rm -f 154a94b58b87`, be advised, your container ID will be different.
 
 **Step 13:** To create a container for the Node.JS application that will be bound to the MongoDB container, execute the following command. 
 
@@ -188,5 +194,22 @@ Once you have the container id in hand, you can inspect its logs.
 **Step 16:** To find inspect the logs of the Node.JS application, execute the following command
 
 `docker logs THE_CONTAINER_ID`
+
+You should see output similar to the following:
+
+```text
+> demo@0.0.0 start /usr/src/app
+> node ./bin/www
+
+(node:16) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
+{ _id: 5cf03db8951f3729eca378c1, name: 'bob', __v: 0 }
+{
+  items: [ 'orange', 'apple', 'banana' ],
+  _id: 5cf03db8951f3729eca378c2,
+  user: 5cf03db8951f3729eca378c1,
+  __v: 0
+}
+GET / 200 278.558 ms - 497
+```
 
 
