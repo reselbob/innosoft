@@ -1,0 +1,39 @@
+version: "3.7"
+
+services:
+  just-web:
+    image: nurih/just-web:latest
+    build: ./just-web
+    ports:
+      - 3000:3000
+    depends_on:
+      - cart-api
+      - user-api
+    environment:
+      CART_URL: 'http://cart-api:3001/cart'
+      USER_URL: 'http://user-api:3002/user'
+
+  cart-api:
+    image: nurih/cart-api:latest
+    build: ./cart-api
+    ports:
+      - 3001:3001
+    depends_on:
+      - common-db
+    environment:
+      MONGO_URL1: 'mongodb://common-db:27017/appDemo1'
+
+  user-api:
+    image: nurih/user-api:latest
+    build: ./user-api
+    ports:
+      - 3002:3002
+    depends_on:
+      - common-db
+    environment:
+      MONGO_URL1: 'mongodb://common-db:27017/appDemo1'
+
+  common-db:
+    image: mongo:4.0
+    ports: 
+      - 27017:27017

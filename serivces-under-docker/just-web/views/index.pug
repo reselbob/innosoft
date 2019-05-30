@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  
+  h1 Hello Shop!
+  h2 Welcome, #{user.name}.
+  
+  div
+    div.outlined 
+      p User <b>#{user.name}</b> id #{user._id} 
+    div.outlined 
+      p Cart #{_id} has
+      ul
+        each entry in items
+          li 
+            b= entry
+  hr
+
+  em Fresh as of #{meta.now} on #{meta.host}
+
+  //- script(src ='/javascripts/cart.js')
+  //- script paintCart();

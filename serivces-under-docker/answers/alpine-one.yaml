@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-one
+  namespace: alpine-one
+spec:
+  containers:
+  - name: box-one
+    image: alpine
+    command: ["/bin/bash"]
+    args: ["-c", "env"]
