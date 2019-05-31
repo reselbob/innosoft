@@ -2,11 +2,11 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: frontend-prod
+  namespace: istio-demo
 spec:
   replicas: 1
   template:
     metadata:
-      namespace: istio-demo
       labels:
         app: frontend
         version: prod
@@ -27,11 +27,11 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: business-prod
+  namespace: istio-demo
 spec:
   replicas: 1
   template:
     metadata:
-      namespace: istio-demo
       labels:
         app: business
         version: prod
