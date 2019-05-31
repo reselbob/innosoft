@@ -151,3 +151,22 @@ WAIT FOR RULES TO PROPAGATE
 `env |grep GATEWAY_URL`
 
 Navigate to `http://${GATEWAY_URL}/productpage` in your web browser
+
+## Install `istioctl`
+
+**Step 21:** To check to see if you have `istioctl` running, type the following command:
+
+`istioctl version`
+
+You should get output similar to this:
+
+`version.BuildInfo{Version:"1.1.7", GitRevision:"eec7a74473deee98cad0a996f41a32a47dd453c2", User:"root", Host:"341b3bf0-76ac-11e9-b644-0a580a2c0404", GolangVersion:"go1.10.4", DockerHub:"docker.io/istio", BuildStatus:"Clean", GitTag:"1.1.6-6-geec7a74"}`
+
+If not, the setup probably did not copy `istioctl` to `/usr/local/bin/`, which we'll do now.
+
+**Step 22:** To enable `istioctl`, execute the following two commands from your current directory which should be,
+`istio-1.1.7`.
+
+`sudo cp ./bin/istioctl /usr/local/bin/istioctl`
+
+`sudo chmod +x /usr/local/bin/istioctl`
