@@ -13,9 +13,29 @@ routing information.
 
 `kubectl apply -f manifests/services.yaml`
 
+Get the NodePort IP
+
+`kubectl get services`
+
+Turn on the proxy
+
+`kubectl proxy`
+
+Get the master IP address
+
+`kubectl config-info`
+
+Call the service
+
+`curl http://MASTER_IP:NODE_PORT_IP`
+
 ## Create an Egress Rule if Running Under Istio
 
-(To learn how to setup Istio under Kubernetes, go [here](../service-mesh-istio/README.md).)
+(To learn how to setup Istio under Kubernetes, go [here](https://github.com/reselbob/innosoft/tree/master/service-mesh-istio).
+
+Inject the Envoy side-car into the pods
+
+`kubectl label namespace istio-demo istio-injection=enabled`
 
 **Step 2:** To create the egress rule that allows containers to make calls to other domains, execute the
 following command:
