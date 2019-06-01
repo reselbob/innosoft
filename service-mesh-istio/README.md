@@ -35,7 +35,7 @@ This installation is intended for a Kubernetes Cluster running on Google Cloud. 
 
 **Step 11:** `kubectl get svc -n istio-system`
 
-```bash
+```text
 NAME                     TYPE           CLUSTER-IP      EXTERNAL-IP    PORT(S)    AGE
 grafana                  ClusterIP      10.19.243.42    <none>         3000/TCP    56s
 istio-citadel            ClusterIP      10.19.249.49    <none>         8060/TCP,15014/TCP    55s
@@ -60,7 +60,7 @@ Make sure the pods are running, so WAIT until they're all up. (Yes, this can tak
 
 **Step 12:** `kubectl get pods -n istio-system`
 
-```bash
+```text
 grafana-7f4d444dd5-697ss                  1/1     Running     0          2m42s
 istio-citadel-7f447d4d4b-qjjnx            1/1     Running     0          2m40s
 istio-cleanup-secrets-1.1.7-xqbqr         0/1     Completed   0          2m49s

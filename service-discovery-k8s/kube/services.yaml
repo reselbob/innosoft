@@ -31,29 +31,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: middleware
+  name: business
   labels:
-    app: middleware
+    app: business
 spec:
   selector:
-    app: middleware
-  ports:
-  - port: 80
-    targetPort: 3000
-    name: http
-  - port: 9464
-    targetPort: 9464
-    name: prometheus
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: backend
-  labels:
-    app: backend
-spec:
-  selector:
-    app: backend
+    app: business
   ports:
   - port: 80
     targetPort: 3000
