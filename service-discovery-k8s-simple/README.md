@@ -39,7 +39,7 @@ Create the namespace, `istio-demo`
 
 Inject the Envoy side-car into the pods
 
-`kubectl label namespace istio-demo istio-injection=enabled`
+`kubectl label namespace default istio-injection=enabled`
 
 **Step 3:** To create the ingress rule that allows access to service, execute the
 following command:
