@@ -1,4 +1,4 @@
-#Simple Istio Installation with BookInfo Sample App
+# Simple Istio Installation with Ingress Access Example
 
 This installation is intended for a Kubernetes Cluster running on Google Cloud. Each node is configured for 2 CPUs and 5GB of RAM.
 
@@ -76,26 +76,30 @@ execute the following command:
 
 ## Install Istio-ized Multi-deployment Application
 
-**Step 8:** To create the deployments for the Istio-ized Multi-deployment Application, execute
+**Step 9:** To create the deployments for the Istio-ized Multi-deployment Application, execute
 the following command
 
 `kubectl apply -f manifests/deployments.yaml`
 
-**Step 9:** To create the services for the Istio-ized Multi-deployment Application, execute
+**Step 10:** To create the services for the Istio-ized Multi-deployment Application, execute
 the following command
 
 `kubectl apply -f manifests/services.yaml`
 
-Find the IP address of `istio-ingressgateway`
+## Allow Access to the Istio-ized Multi-deployment Application
 
-`kubectl get svc -n istio-system| grep istio-ingressgateway `
+**Step 10:** Find the IP address of `istio-ingressgateway`.
 
-Take a look
+`kubectl get svc -n istio-system`
 
-Bind the ingress
+Save the IP address of `istio-ingressgateway`. You'll need it
+
+**Step 11:** Enter the IP address of `istio-ingressgateway` into the address bar of your computer's browser.
+
+You should get an error, an "Unable to find web site" error.
+
+**Step 12:** Bind the ingress rule to Istio to allow access to the application.
 
 `kubectl apply -f manifests/ingress.yaml`
 
-Bind the egress
-
-`kubectl apply -f manifests/egress.yaml`
+All should be well.
