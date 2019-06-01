@@ -10,30 +10,18 @@ This installation is intended for a Kubernetes Cluster running on Google Cloud. 
 
 **Step 3:** `export PATH=$PWD/bin:$PATH`
 
-## Install Helm
-
-**Step 4:** `curl -LO https://git.io/get_helm.sh`
-
-**Step 5:** `chmod 700 get_helm.sh`
-
-**Step 6:** `./get_helm.sh`
-
-**Step 7:** `helm init`
-
-**Step 8:** `helm repo add istio.io https://storage.googleapis.com/istio-release/releases/1.1.7/charts/`
-
 
 ## Install Istio
 
-**Step 9:** `for i in install/kubernetes/helm/istio-init/files/crd*yaml; do kubectl apply -f $i; done`
+**Step 4:** `for i in install/kubernetes/helm/istio-init/files/crd*yaml; do kubectl apply -f $i; done`
 
 ## Apply Mutual TLS
 
-**Step 10:** `kubectl apply -f install/kubernetes/istio-demo.yaml`
+**Step 5:** `kubectl apply -f install/kubernetes/istio-demo.yaml`
 
 ## Verify
 
-**Step 11:** `kubectl get svc -n istio-system`
+**Step 6:** `kubectl get svc -n istio-system`
 
 ```text
 NAME                     TYPE           CLUSTER-IP      EXTERNAL-IP    PORT(S)    AGE
@@ -58,7 +46,7 @@ zipkin                   ClusterIP      10.19.250.199   <none>         9411/TCP 
 
 Make sure the pods are running, so WAIT until they're all up. (Yes, this can take time.)
 
-**Step 12:** `kubectl get pods -n istio-system`
+**Step 7:** `kubectl get pods -n istio-system`
 
 ```text
 grafana-7f4d444dd5-697ss                  1/1     Running     0          2m42s
@@ -78,95 +66,36 @@ kiali-68677d47d7-d9zkg                    1/1     Running     0          2m41s
 prometheus-5977597c75-9zwcm               1/1     Running     0          2m40s
 ```
 
-## Install BookInfo Sample App
+## Set Istio to bind to all pods in the namespace, `default`
 
-**Step 13:** `kubectl label namespace default istio-injection=enabled`
+**Step 8:** To configure Istio to inject a sidecar when created in the `default` namespace,
+execute the following command:
 
-**Step 14:** `kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml`
-
-**Step 15:** `kubectl get services`
-
-```bash
-NAME          TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
-details       ClusterIP   10.19.244.174   <none>        9080/TCP   10s
-kubernetes    ClusterIP   10.19.240.1     <none>        443/TCP    10m
-productpage   ClusterIP   10.19.240.147   <none>        9080/TCP   9s
-ratings       ClusterIP   10.19.254.88    <none>        9080/TCP   9s
-reviews       ClusterIP   10.19.246.90    <none>        9080/TCP   9s
-```
-
-**Step 16:** `kubectl get pods`
-
-Don't proceed until all the pods are up and operational.
-
-```bash
-NAME                              READY   STATUS    RESTARTS   AGE
-details-v1-5cb65fd66c-l4jr5       2/2     Running   0          95s
-productpage-v1-6cd65b46b9-gn56x   2/2     Running   0          93s
-ratings-v1-6cf8478cc5-kd77j       2/2     Running   0          94s
-reviews-v1-85fd9d5d54-925q6       2/2     Running   0          94s
-reviews-v2-f7cddcd8b-nxkcc        2/2     Running   0          94s
-reviews-v3-7c647f4ddb-hdkmq       2/2     Running   0          94s
-```
-
-## Confirm BookInfo application installation
-
-**Step 17:** `kubectl exec -it $(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}') -c ratings -- curl productpage:9080/productpage | grep -o "<title>.*</title>"`
-
-## Define Ingress
-**Step 18:** `kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml`
-
-## Confirm Gateway
-**Step 19:** `kubectl get gateway`
+`kubectl label namespace default istio-injection=enabled`
 
 
-## Set Ingress IP Using LoadBalancer
+## Install Istio-ized Multi-deployment Application
 
-**Step 20:** `export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')`
+**Step 8:** To create the deployments for the Istio-ized Multi-deployment Application, execute
+the following command
 
-**Step 21:** `export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].port}')`
+`kubectl apply -f manifests/deployments.yaml`
 
-**Step 22:** `export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].port}')`
+**Step 9:** To create the services for the Istio-ized Multi-deployment Application, execute
+the following command
 
+`kubectl apply -f manifests/services.yaml`
 
-## Set Host and the Gateway URL env vars
+Find the IP address of `istio-ingressgateway`
 
-**Step 23:** ` export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT`
+`kubectl get svc -n istio-system| grep istio-ingressgateway `
 
+Take a look
 
-## Confirm application is up and running against Gateway URL
+Bind the ingress
 
-**Step 24:** `curl -s http://${GATEWAY_URL}/productpage | grep -o "<title>.*</title>"`
+`kubectl apply -f manifests/ingress.yaml`
 
-## Apply Destination Rules
+Bind the egress
 
-**Step 20:** `kubectl apply -f samples/bookinfo/networking/destination-rule-all-mtls.yaml`
-
-WAIT FOR RULES TO PROPAGATE
-
-## View Rules
-
-**Step 20:**  `kubectl get destinationrules -o yaml`
-
-`env |grep GATEWAY_URL`
-
-Navigate to `http://${GATEWAY_URL}/productpage` in your web browser
-
-## Install `istioctl`
-
-**Step 21:** To check to see if you have `istioctl` running, type the following command:
-
-`istioctl version`
-
-You should get output similar to this:
-
-`version.BuildInfo{Version:"1.1.7", GitRevision:"eec7a74473deee98cad0a996f41a32a47dd453c2", User:"root", Host:"341b3bf0-76ac-11e9-b644-0a580a2c0404", GolangVersion:"go1.10.4", DockerHub:"docker.io/istio", BuildStatus:"Clean", GitTag:"1.1.6-6-geec7a74"}`
-
-If not, the setup probably did not copy `istioctl` to `/usr/local/bin/`, which we'll do now.
-
-**Step 22:** To enable `istioctl`, execute the following two commands from your current directory which should be,
-`istio-1.1.7`.
-
-`sudo cp ./bin/istioctl /usr/local/bin/istioctl`
-
-`sudo chmod +x /usr/local/bin/istioctl`
+`kubectl apply -f manifests/egress.yaml`
