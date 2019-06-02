@@ -1,1 +1,3 @@
-This repo contains code intended to demonstrate how to build a Docker containers for a variety of scenarios.
+
+# Code and Project Samles
+The repository contains the sample code and project for the class, **Microservices Architecture**.
