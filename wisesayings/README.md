@@ -57,13 +57,29 @@ Find the NodePort `port` of the service, `wisesayings`
 
 `kubectl get services`
 
+You'll get something similar to:
+
+```text
+NAME          TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+kubernetes    ClusterIP   10.96.0.1       <none>        443/TCP          4m26s
+wisesayings   NodePort    10.110.190.64   <none>        3000:30758/TCP   2m2s
+```
+
 Run, `curl` to get a WiseSaying
 
 `curl CLUSTER_IP:NODE_PORT`
 
+**WHERE**
+
+`NODE_PORT` is the port on which was reported back from the call, `kubectl get services`.
+
 Minikube users, execute the following:
 
 `curl $(minikube ip):NODE_PORT`
+
+**WHERE**
+
+`NODE_PORT` is the port on which was reported back from the call, `kubectl get services`.
 
 # Working with the WiseSaying service from within the cluster
 
