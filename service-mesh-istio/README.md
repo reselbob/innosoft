@@ -102,4 +102,20 @@ You should get an error, an "Unable to find web site" error.
 
 `kubectl apply -f manifests/ingress.yaml`
 
+```text
+frontend-prod - 0.155secs
+http://business/ -> business-prod - 0.12secs
+http://worldclockapi.com/api/json/utc/now -> StatusCodeError: 404 - ""
+```
+
+**Step 13:**  Aplly the egress to allow access to `worldclockapi.com`.
+
+`kubectl apply -f manifests/egress.yaml`
+
+```text
+frontend-prod - 0.134secs
+http://business/ -> business-prod - 0.123secs
+http://worldclockapi.com/api/json/utc/now -> {"$id":"1","currentDateTime":"2019-06-02T03:14Z","utcOffset":"00:00:00","isDayLightSavingsTime":false,"dayOfTheWeek":"Sunday","timeZoneName":"UTC","currentFileTime":132039188544212367,"ordinalDate":"2019-153","serviceResponse":null}
+```
+
 All should be well.
