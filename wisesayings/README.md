@@ -93,3 +93,10 @@ From within the cluster use `wget` to access the service, `wisesayings.
 To access the cluster, execute the following command:
 
 `wget -O- http://wisesayings:3000`
+
+You should get something similar to:
+```text
+{
+    "saying": "The leopard does not change his spots."
+-                    100% |***********************************************************|    58  0:00:00 ETA
+```
