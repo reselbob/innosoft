@@ -28,13 +28,15 @@ Run, `curl` to get a WiseSaying
 
 ## To build and run within an existing Kubernetes cluster
 
+(Katacoda users go to `https://katacoda.com/courses/kubernetes/kubectl-run-containers`)
+
 Within the directory `manifests`, execute the following commmands:
 
 `kubectl apply -f deployment.yaml`
 
 `kubectl apply -f service.yaml`
 
-In a separate terminal, invoke the cluster proxy
+In a separate terminal, if you are **not** using `minikube`, invoke the cluster proxy
 
 `kubectl proxy`
 
@@ -59,6 +61,10 @@ Run, `curl` to get a WiseSaying
 
 `curl CLUSTER_IP:NODE_PORT`
 
+Minikube users, execute the following:
+
+`curl $(minikube ip):NODE_PORT`
+
 # Working with the WiseSaying service from within the cluster
 
 Create a container which you access and use it's command line to take to the service `wisesayings` from
@@ -70,4 +76,4 @@ From within the cluster use `wget` to access the service, `wisesayings.
 
 To access the cluster, execute the following command:
 
-`wget -O- http"//wisesayings`
+`wget -O- http://wisesayings:3000`
