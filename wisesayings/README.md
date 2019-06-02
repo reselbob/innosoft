@@ -1,4 +1,4 @@
-#Impelementing WiseSayings
+# Implementing WiseSayings
 
 ## To run as a standalone applications
 
