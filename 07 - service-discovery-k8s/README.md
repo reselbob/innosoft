@@ -15,7 +15,7 @@ routing information.
 
 **Step 3:** Get the NodePort IP
 
-`root@reselkubelap:~/Documents/innosoft/service-discovery-k8s# kubectl get services |grep NodePort`
+`kubectl get services |grep NodePort`
 
 **Step 4:** In a new terminal window, turn on the proxy by executing the following command.
 

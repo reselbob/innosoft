@@ -39,10 +39,14 @@ Now that we’ve added our trial license we need to start up all the containers.
 
 **NOTE: this will start the containers in the foreground.**  
 ```
-docker-compose -f docker-compose.yml -f docker-local.yml up 
+docker-compose -f docker-compose.yml -f docker-local.yml uphe output and make sure things look good.  
 ```
+----
 
-Watch the output and make sure things look good.  
+**BEWARE** It takes time for Docker compose to spin up all the container necessary, so be patient. Also,
+Once Tyk is installed it will NOT run in the background but rather in the terminal window in which you invoked docker-compose.
+
+----
 
 If everything started successfully you should see output similar to: 
 ```

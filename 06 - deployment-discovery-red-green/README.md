@@ -31,8 +31,30 @@ we'll need to set up Red and Green deployments as well as the Kubernetes service
 
 `kubectl get services | grep echocolor`
 
-**Step 5:** Execute the following command to confirm that the deployments are running under Kubernetes
+**Step 6:** Execute the following command to confirm that the deployments are running under Kubernetes
 
 `kubectl get pods | grep echocolor`
+
+## Start the Kubernetes proxy
+
+**Step 7:** In a new terminal window, start the Kubernetes proxy so we can access the service
+via `curl`
+
+To start the proxy, execute the following command, `kubectl proxy`
+
+## Find the NodePort IP address
+
+**Step 8:** To get the NodePort IP, execute teh following command
+
+`kubectl get services |grep NodePort`
+
+**Step 9:** Get the master NodeIP address
+
+`kubectl cluster-info`
+
+**Step 10:** Call the service
+
+`curl http://MASTER_IP:NODE_PORT_IP`
+
 
 
