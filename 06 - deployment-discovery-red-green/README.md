@@ -56,5 +56,7 @@ To start the proxy, execute the following command, `kubectl proxy`
 
 `curl http://MASTER_IP:NODE_PORT_IP`
 
+**Challenge** : Create and deploy a `yellow` deployment and adjust the service `echocolor` to use
+the `yellow` deployment.
 
 
