@@ -39,7 +39,7 @@ Now that we’ve added our trial license we need to start up all the containers.
 
 **NOTE: this will start the containers in the foreground.**  
 ```
-docker-compose -f docker-compose.yml -f docker-local.yml
+docker-compose -f docker-compose.yml -f docker-local.yml up
 ```
 ----
 
