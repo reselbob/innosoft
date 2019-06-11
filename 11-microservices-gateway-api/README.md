@@ -164,7 +164,13 @@ curl -H "Authorization: 5aaa165408aa38000174c6d513aeeffa8fad452f85df557d3b16a29b
 Did this work?   If not how can you fix it? 
 
 ## Cleanup
-Run this command to delete all the containers we just created. 
+Run these commands to delete all the containers we just created. 
+
+```text
+docker-compose down
+```
+
+
 ```
 docker-compose rm -f 
 ```
