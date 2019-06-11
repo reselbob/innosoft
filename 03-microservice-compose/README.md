@@ -4,6 +4,9 @@ it into Docker containers using `Dockerfile`s and `docker-compose`
 
 You can use the Katacoda interactive learning environment, `https://katacoda.com/courses/ubuntu/playground`.
 
+
+Go to the directory, `flask-microservice`
+
 ```
 cd flask-microservice
 ```

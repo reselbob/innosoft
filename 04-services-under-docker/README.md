@@ -3,6 +3,8 @@
 In this lab we're going to spin up an MongoDB container. Then, we going to spin up a Node.JS application and bind it to the
 backing MongoDB container.
 
+You can use the Katacoda interactive learning environment, `https://katacoda.com/courses/ubuntu/playground`.
+
 
 ## Creating the MongoDB backing database application
 
@@ -26,7 +28,7 @@ Note the container is named `mongo4`.
 
 `npm start`
 
-**Step 5:** Confirm that the application is running by executing the following command.
+**Step 5:** Confirm that the application is running by executing the following command **in a new terminal window**.
 
 `curl -L http://localhost:3000/`
 
