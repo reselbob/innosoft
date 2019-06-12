@@ -23,9 +23,6 @@ spec:
   - port: 80
     targetPort: 3000
     name: http
-  - port: 9464
-    targetPort: 9464
-    name: prometheus
   type: NodePort
 ---
 apiVersion: v1
@@ -41,6 +38,3 @@ spec:
   - port: 80
     targetPort: 3000
     name: http
-  - port: 9464
-    targetPort: 9464
-    name: prometheus
