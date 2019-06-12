@@ -1,6 +1,10 @@
-# Setting up Grafana on a Kubernetes Cluster
+# Setting up Grafana
 
-## Setting Up Helm
+## Setting up Grafana under Katacoda
+
+To get the full hands on experience installing and using Grafana under Katacoda, go [here](https://katacoda.com/courses/prometheus/creating-dashboards-with-grafana).
+
+## Setting Up Grafana Using Helm on a local Kubernetes Cluster
 
 You need to have `helm` installed.
 
