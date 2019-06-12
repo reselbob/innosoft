@@ -17,11 +17,7 @@ routing information.
 
 `kubectl get services |grep NodePort`
 
-**Step 4:** In a new terminal window, turn on the proxy by executing the following command.
-
-`kubectl proxy`
-
-**Step 5:** Get the master IP address
+**Step 4:** Get the master IP address
 
 `kubectl cluster-info`
 
