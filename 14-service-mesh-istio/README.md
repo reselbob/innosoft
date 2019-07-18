@@ -1,6 +1,12 @@
 # Simple Istio Installation with Ingress Access Example
 
-This installation is intended for a Kubernetes Cluster running on Google Cloud. Each node is configured for 2 CPUs and 5GB of RAM.
+**Steps 1 -7 are intended for for those of you who want to install Istio from scratch to Google Cloud.** This installation is intended for a Kubernetes Cluster running on Google Cloud.
+Each node is configured for 2 CPUs and 5GB of RAM.
+
+It is possible to setup a Kubernetes cluster with Istio installed by creating the cluster using the Google Cloud Console. Just scroll down in the
+setup page and check the **enable Istio** check box.
+
+If you have cluster with Istio installed, start this exercise at Step 8.
 
 ## Download Istio
 

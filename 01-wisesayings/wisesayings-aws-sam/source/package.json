@@ -1,0 +1,15 @@
+{
+  "name": "wise-sayings",
+  "version": "1.0.0",
+  "description": "a app that delivers wise sayings",
+  "main": "index.js",
+  "repository": "",
+  "author": "reselbob",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "scripts": {
+  },
+  "devDependencies": {
+  }
+}

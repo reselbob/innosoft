@@ -1,0 +1,22 @@
+{
+  "license": "MIT",
+  "name": "fortune-cookies",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://reselbob@github.com/reselbob/fortune-cookies.git"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cron": "^1.7.1",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "faker": "^4.1.0",
+    "mocha": "^6.1.4",
+    "supertest": "^4.0.2"
+  }
+}
