@@ -6,7 +6,7 @@
 
 **Step 2:**  Go to working directory
 
-`cd innosoft/init-container/` 
+`cd innosoft/07-init-container/` 
 
 
 **Step 3:**  Watch the activity
@@ -33,6 +33,9 @@
 
 ## Get the output from the web server
 
-**Step 8:** Run `curl` to get the the expected output from Nginx.
+**Step 8** Get the cluster IP address
+`kubectl cluster-info`
 
-`curl l127.0.0.1:<SERVICE_PORT>`
+**Step 9:** Run `curl` to get the the expected output from Nginx.
+
+`curl <CLUSTER_IP_ADDRESS>:<SERVICE_PORT>`
