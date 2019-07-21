@@ -23,19 +23,16 @@
 
 `kubectl expose deployment nginx-deploy --type NodePort --port 80`
 
-**Step 6:** In a second terminal, run `kubectl proxy` to expose the service from the cluster
-
-`kubectl proxy`
-
-**Step 7:** Get the port that Kubernetes assigned to the service
+**Step 6:** Get the port that Kubernetes assigned to the service
 
 `kubectl get service`
 
 ## Get the output from the web server
 
-**Step 8** Get the cluster IP address
+**Step 7** Get the cluster IP address
+
 `kubectl cluster-info`
 
-**Step 9:** Run `curl` to get the the expected output from Nginx.
+**Step 8:** Run `curl` to get the the expected output from Nginx.
 
 `curl <CLUSTER_IP_ADDRESS>:<SERVICE_PORT>`
