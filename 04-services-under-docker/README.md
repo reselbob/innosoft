@@ -178,13 +178,13 @@ CONTAINER ID        IMAGE                    COMMAND                  CREATED   
 
 Let's take a look at the log output. We'll need to find the `ID` of the Node.JS container
 
-**Step 10:** To find the container id of the new version of the Node.JS application, execute the following command
+**Step 11:** To find the container id of the new version of the Node.JS application, execute the following command
 
 `docker ps -a`
 
 Once you have the container id in hand, you can inspect its logs.
 
-**Step 11:** To find inspect the logs of the Node.JS application, execute the following command
+**Step 12:** To find inspect the logs of the Node.JS application, execute the following command
 
 `docker logs THE_CONTAINER_ID`
 
