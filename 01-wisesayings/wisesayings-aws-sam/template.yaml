@@ -27,7 +27,7 @@ Resources:
               - s3:*
             Resource: '*'
       CodeUri: source/
-      Handler: index_update.handler
+      Handler: index.handler
       Runtime: nodejs8.10
       Environment:
         Variables:
