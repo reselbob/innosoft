@@ -62,17 +62,6 @@ Ubuntu 18.04
 
 `vagrant box add generic/ubuntu1804`
 
-## Get the Code
-
-The next step is to download the source code in this directory from the GitHub repository to your local
-file system. To save time, we'll just clone the entire project repository and navigate to the directory that
-has the source.
-
-**Step 5:** To clone the repository and navigate to the source code directory, execute the following commands.
-
-`git clone https://github.com/reselbob/innosoft.git`
-
-`cd innosoft/creating-a-cluster-with-vagrant`
 
 ## Create the Kubernetes Cluster
 
