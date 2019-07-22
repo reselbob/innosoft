@@ -22,6 +22,16 @@ This is a common "brown field" technique: simply packaging an existing code base
 
 **Step 2:** Create the Docker image against the Dockerfile using the following command:
 
+Get the source code
+
+`git clone https://github.com/reselbob/innosoft.git`
+
+Navigate to the code directory
+
+`cd innosoft/04-services-under-docker/demo-app`
+
+Build the container image against the `dockerfile` in the current directory.
+
 `docker build -t innosoft/demo-app .`
 
 The Dockerfile:
