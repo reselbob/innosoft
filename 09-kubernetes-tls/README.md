@@ -15,7 +15,7 @@
 
 ------
 
-**NOTE:** For this lab you it easiest to use `Minikube` because it provides a simple ingress controller.
+**NOTE:** For this lab it's easiest to use `Minikube` because it provides a simple ingress controller.
 
 [Here](https://kubernetes.io/docs/tasks/tools/install-minikube/) are the instructions for installing Minikube on your local machine.
 
