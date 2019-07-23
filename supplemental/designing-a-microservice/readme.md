@@ -1,5 +1,10 @@
 # Microservice Architecture Definition Worksheet
 
+![monolithic design](monolith.png)
+
+**The original monolithic design***
+
+
 The goal of the exercise is to design and describe your microservice to the level of detail that the work can be assigned to a third party contractor for implementation.
 
 Your design should be “language and framework agnostic”. As such your team needs to address
