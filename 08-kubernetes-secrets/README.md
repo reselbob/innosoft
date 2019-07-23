@@ -31,7 +31,7 @@
 
 
 
-**Secret in a manifest**
+**Example of a secret in a manifest**
 
 ```yaml
 apiVersion: v1    
