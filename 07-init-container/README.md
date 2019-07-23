@@ -13,7 +13,7 @@
 
 `watch kubectl get all -o wide`
 
-**Step 4:** Spin up the containers
+**Step 4:** **In a new terminal window** spin up the containers
 
 `kubectl apply -f init-container.yaml`
 
