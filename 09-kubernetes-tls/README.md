@@ -1,3 +1,4 @@
+
 # Kubernetes and Transport Layer Security
 
 ## Keys, Users and Groups
@@ -14,21 +15,27 @@ You'll find the Katacoda `minikube` environment here: https://katacoda.com/cours
 
 ## Securing a Kubernetes Ingress Using TLS
 
-We're going to implement TLS on minikube with the ingress controller enabled.
+**NOTE:** For this lab you it easiest to use `Minikube` because it provides a simple ingress controller.
 
-**Step 1:** Enable the ingress controller on minikube
+[Here](https://kubernetes.io/docs/tasks/tools/install-minikube/) are the instructions for installing Minikube on your local machine.
+
+Or, you can use the  Katacoda Playground for Minikube found [here](https://katacoda.com/courses/kubernetes/kubectl-run-containers).
+
+We're going to implement TLS on Minikube with the ingress controller enabled.
+
+**Step 1:** Enable the ingress controller on Minikube. Assuming you have Minikube installed. At the command line, type
 
 `minikube addons enable ingress`
 
-**Step 2:** Create an `nginx` deployment
+**Step 2:** Create an `nginx` deployment. At the command line, type
 
 `kubectl run nginx --image=nginx`
 
-**Step 3:** Bind the service:
+**Step 3:** Bind the service. At the command line, type
 
 `kubectl expose deployment nginx --port 80`
 
-**Step 4:** Create the unsecured ingress
+**Step 4:** Create the unsecured ingress. At the command line, type
 
 `kubectl apply -f ingress.yaml`
 
