@@ -1,12 +1,12 @@
 # Microservice Architecture Definition Worksheet
 
-**The original scencario description***
+**The original scencario description**
 
 A marketing company wants your group to design an application that will deliver a “fortune cookie” to willing recipients. All that’s required is that the user register with the app using either Facebook, Google or LinkedIn credentials. Or the user can custom register by providing standard profile information. The fortune cookie text is provided by the WiseSayings service. Each fortune cookie is accompanied by an advertisement from “Ad Auction” service. However, users need to be provided with with the option to not receive advertisements. Also, a feature needs to be implemented supporting a Fortune Cookie presence on Twitter by sending Fortune Cookie tweets out at configurable intervals. Fortune Cookie needs to work on iPhone, Android, standard web pages, Alexa and SMS. In addition, Fortune Cookie needs to provide usage and performance metrics on demand to administrative personnel. Fortune cookie is a free application.
 
 ![monolithic design](monolith.png)
 
-**The original monolithic design***
+**The original monolithic design**
 
 
 The goal of the exercise is to design and describe your microservice to the level of detail that the work can be assigned to a third party contractor for implementation.
