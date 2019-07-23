@@ -86,6 +86,8 @@ kiali-68677d47d7-d9zkg                    1/1     Running     0          2m41s
 prometheus-5977597c75-9zwcm               1/1     Running     0          2m40s
 ```
 
+# Setting Up An Istio Enabled Set of Services
+
 ## Set Istio to bind to all pods in the namespace, `default`
 
 **Step 8:** To configure Istio to inject a sidecar when created in the `default` namespace,
@@ -140,7 +142,14 @@ http://worldclockapi.com/api/json/utc/now -> {"$id":"1","currentDateTime":"2019-
 
 All should be well.
 
-## Added information: Circuit Breaking
+## Additional Information: Circuit Breaking
+
+Istio supports the "circuit breaking" pattern. Circuit breaking allows you to write applications that
+limit the impact of failures, latency spikes, and other undesirable effects of network peculiarities.
+
+The example below is the manifest for an Isitio [DestinationRule](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/)
+that implements the circuit breaking pattern on the
+service, `frontend`.
 
 ```yaml
 
@@ -164,3 +173,19 @@ spec:
       baseEjectionTime: 15m
       maxEjectionPercent: 100
 ```
+
+There are a few concepts to understand:
+
+**Maximum Connections:**  Maximum number of connections to a backend. Any excess connection will be made pending in a queue.
+You can modify this number by altering the `maxConnections` field.
+
+**Maximum Pending Requests:** Maximum number of pending requests to a backend. Any excess pending requests will be denied.
+You can modify this number by changing the `http1MaxPendingRequests` field.
+
+In the example shown above, we set Maximum connections to 1 and Maximum pending requests to 1.
+Thus, if we sent more than 2 requests at once to `frontend`, `frontend` will have 1 pending request
+and deny any additional requests until the pending request is processed.
+
+Also, the `DestinationRule` will detect any host that triggers a server error (5XX code) in the services Envoy side car 
+and eject the pod out of the load balancing pool for 15 minutes. Visit [here](https://istio.io/docs/tasks/traffic-management/circuit-breaking/)
+for additional details about Istio and the circuit breaking pattern.
