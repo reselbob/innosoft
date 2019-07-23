@@ -10,16 +10,18 @@
 
 ![Certificate Management Process](./images/rbac-process.jpeg)
 
-**Note** This lab is intended to be run under [`minikube`](https://kubernetes.io/docs/setup/minikube/). You can use Katacoda's `minikube` scenario to run this lab. 
-You'll find the Katacoda `minikube` environment here: https://katacoda.com/courses/kubernetes/launch-single-node-cluster
 
 ## Securing a Kubernetes Ingress Using TLS
+
+------
 
 **NOTE:** For this lab you it easiest to use `Minikube` because it provides a simple ingress controller.
 
 [Here](https://kubernetes.io/docs/tasks/tools/install-minikube/) are the instructions for installing Minikube on your local machine.
 
 Or, you can use the  Katacoda Playground for Minikube found [here](https://katacoda.com/courses/kubernetes/kubectl-run-containers).
+
+------
 
 We're going to implement TLS on Minikube with the ingress controller enabled.
 
