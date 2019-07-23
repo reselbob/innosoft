@@ -35,12 +35,11 @@ we'll need to set up Red and Green deployments as well as the Kubernetes service
 
 `kubectl get pods | grep echocolor`
 
-## Start the Kubernetes proxy
+## Preparing to call the service
 
 **Step 7:** In a new terminal window, start the Kubernetes proxy so we can access the service
 via `curl`
 
-To start the proxy, execute the following command, `kubectl proxy`
 
 ## Find the NodePort IP address
 
@@ -54,7 +53,7 @@ To start the proxy, execute the following command, `kubectl proxy`
 
 **Step 10:** Call the service
 
-`curl http://MASTER_IP:NODE_PORT_IP`
+`curl http://<MASTER_IP>:<NODE_PORT_IP>`
 
 **Challenge** : Create and deploy a `yellow` deployment and adjust the service `echocolor` to use
 the `yellow` deployment.
