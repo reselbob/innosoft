@@ -1,3 +1,17 @@
+# Istio Basic Architecture
+
+![Istio Architecture](https://cdn-images-1.medium.com/max/1600/1*8gH0GAnncEE6VUIbwnGUww.png)
+
+**Envoy** is the proxy between that handles network traffic.
+
+**Pilot** , the core traffic management component. Pilot takes the rules for traffic behavior provided by the control plane,
+and converts them into configurations applied by Envoy, based on how such things are managed locally. Pilot allows Istio to work with different
+orchestration systems besides Kubernetes, but behave consistently between them.
+
+**Mixer** takes responsibility for interfacing with the backend systems. Instead of having application code integrate with specific backends, the app code instead does a integration with Mixer.
+
+**Citadel** controls authentication and identity management between services.
+
 # Simple Istio Installation with Ingress Access Example
 
 **Steps 1 -7 are intended for for those of you who want to install Istio from scratch to Google Cloud.** This installation is intended for a Kubernetes Cluster running on Google Cloud.
@@ -125,3 +139,28 @@ http://worldclockapi.com/api/json/utc/now -> {"$id":"1","currentDateTime":"2019-
 ```
 
 All should be well.
+
+## Added information: Circuit Breaking
+
+```yaml
+
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: fe-circuit
+  namespace: default
+spec:
+  host: frontend
+  trafficPolicy:
+    connectionPool:
+      tcp:
+        maxConnections: 1
+      http:
+        http1MaxPendingRequests: 1
+        maxRequestsPerConnection: 1
+    outlierDetection:
+      consecutiveErrors: 1
+      interval: 1s
+      baseEjectionTime: 15m
+      maxEjectionPercent: 100
+```
