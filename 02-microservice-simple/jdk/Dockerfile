@@ -1,5 +1,0 @@
-FROM java:8-jdk
-CMD ["/bin/bash"]
-
-
-
