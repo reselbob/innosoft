@@ -3,12 +3,12 @@
 
 ## Keys, Users and Groups
 
-![certificate-analysis](./images/certs.jpeg)
+![certificate-analysis](images/certs.jpeg)
 
 
 ## Certificate Management Process in the Enterprise
 
-![Certificate Management Process](./images/rbac-process.jpeg)
+![Certificate Management Process](images/rbac-process.jpeg)
 
 
 ## Securing a Kubernetes Ingress Using TLS

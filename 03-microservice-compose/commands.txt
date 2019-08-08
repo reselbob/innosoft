@@ -1,9 +1,0 @@
-docker-compose up -d
-
-curl localhost
-
-curl localhost/resetcounter
-
-docker-compose logs flaskapp
-
-#flaskapp_1 | DEBUG in linode [/home/flask/app/web/linode.py:56]: flaskapp_1 | reset visitor count

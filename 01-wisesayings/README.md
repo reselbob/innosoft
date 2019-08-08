@@ -28,19 +28,25 @@ Run, `curl` to get a WiseSaying
 
 ## To build and run within an existing Kubernetes cluster
 
-(Katacoda users go to `https://katacoda.com/courses/kubernetes/kubectl-run-containers`)
+**Step 1:** Go to the `kubenetes` playground in Katacoda:
 
-Within the directory `manifests`, execute the following commmands:
+`https://katacoda.com/courses/kubernetes/playground`
+
+**Step 2:** Clone this repo in the interactive terminal
+
+`git clone https://github.com/reselbob/innosoft.git`
+
+**Step 3:** Go to the `manifest` directory within the lab's source code
+
+`cd innosoft/01-wisesayings/manifests`
+
+**Step 4:** Within the directory `manifests`, execute the following commmands:
 
 `kubectl apply -f deployment.yaml`
 
 `kubectl apply -f service.yaml`
 
-In a separate terminal, if you are **not** using `minikube`, invoke the cluster proxy
-
-`kubectl proxy`
-
-Go back to the original terminal and find the IP address of cluster 
+**Step 5:** Find the IP address of cluster 
 
 `kubectl cluster-info`
 
@@ -53,7 +59,7 @@ KubeDNS is running at https://172.42.42.100:6443/api/v1/namespaces/kube-system/s
 
 Remember the IP address; you'll need it
 
-Find the NodePort `port` of the service, `wisesayings`
+**Step 6:** Find the NodePort `port` of the service, `wisesayings`
 
 `kubectl get services`
 
@@ -65,7 +71,7 @@ kubernetes    ClusterIP   10.96.0.1       <none>        443/TCP          4m26s
 wisesayings   NodePort    10.110.190.64   <none>        3000:30758/TCP   2m2s
 ```
 
-Run, `curl` to get a WiseSaying
+**Step 7:** Run, `curl` to get a WiseSaying
 
 `curl CLUSTER_IP:NODE_PORT`
 
@@ -73,26 +79,18 @@ Run, `curl` to get a WiseSaying
 
 `NODE_PORT` is the port on which was reported back from the call, `kubectl get services`.
 
-Minikube users, execute the following:
+## Working with the WiseSaying service from within the cluster
 
-`curl $(minikube ip):NODE_PORT`
-
-**WHERE**
-
-`NODE_PORT` is the port on which was reported back from the call, `kubectl get services`.
-
-# Working with the WiseSaying service from within the cluster
-
-Create a container which you access and use it's command line to take to the service `wisesayings` from
+**Step 1:** Create a container which you'll access and use it's command line to take to the service `wisesayings` from
 within the cluster
 
 `kubectl run -it deployment-for-testing --image=busybox /bin/sh`
 
 From within the cluster use `wget` to access the service, `wisesayings.
 
-To access the cluster, execute the following command:
+**Step 2:** To access the cluster, execute the following command:
 
-`wget -O- http://wisesayings:3000`
+`wget -qO- http://wisesayings:3000`
 
 You should get something similar to:
 ```text
