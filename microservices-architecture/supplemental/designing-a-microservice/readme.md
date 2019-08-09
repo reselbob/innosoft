@@ -17,7 +17,7 @@ with little or no regard to specifc implementation technology.
 
 The following questions are intended to help bring clarity to your design efforts and detail to your specification.
 
-1. What is the semantic definition of your microservice? In order words, what is the concern of the service? At a logical level,
+1. What is the semantic definition of your microservice? In others words, what is the concern of the service? At a logical level,
 what is it supposed to do?
 
 2. Is your microservice intended to be synchronous, asynchronous, or both?
