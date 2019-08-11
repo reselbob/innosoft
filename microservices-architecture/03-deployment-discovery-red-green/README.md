@@ -1,6 +1,30 @@
 # Deployment Discovery Under Kubernetes
 
+
 The purpose of this lab is to demonstrate how to have a service bind between alternate deployments
+
+## Application Source Code
+
+```javascript
+const http = require('http');
+
+const port = process.env.PORT|| 3000;
+const color  = process.env.COLOR_ECHO_COLOR || "NO_COLOR";
+
+const handleRequest = function(request, response) {
+    const str = JSON.stringify({color, date: new Date()}, null, 4);
+    response.writeHead(200);
+    response.end(str);
+    console.log(str);
+};
+
+const server = http.createServer(handleRequest);
+server.listen(port, ()=>{
+    console.log(`Listening on port ${port}, started at : ${new Date()}`);
+});
+```
+
+## Lab Instructions
 
 Go the `manifests` directory of the project. The `manifests` directory contains all the `yaml` files
 we'll need to set up Red and Green deployments as well as the Kubernetes service that will bind to each accordingly.
