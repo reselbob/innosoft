@@ -59,23 +59,18 @@ we'll need to set up Red and Green deployments as well as the Kubernetes service
 
 `kubectl get pods | grep echocolor`
 
-## Preparing to call the service
-
-**Step 7:** In a new terminal window, start the Kubernetes proxy so we can access the service
-via `curl`
-
 
 ## Find the NodePort IP address
 
-**Step 8:** To get the NodePort IP, execute teh following command
+**Step 7:** To get the NodePort IP, execute teh following command
 
 `kubectl get services |grep NodePort`
 
-**Step 9:** Get the master NodeIP address
+**Step 8:** Get the master NodeIP address
 
 `kubectl cluster-info`
 
-**Step 10:** Call the service
+**Step 9:** Call the service using `http`
 
 `curl http://<MASTER_IP>:<NODE_PORT_IP>`
 
@@ -88,7 +83,7 @@ You should see similar output as follows:
 }
 ```
 
-**Step 11** Changed the `service.yaml` manifest to look for pods that have the select, `color:green`.
+**Step 10** Changed the `service.yaml` manifest to look for pods that have the select, `color:green`.
 
 This is the current version of `service.yaml`. Notice the entry, `color:red`.
 
@@ -142,11 +137,11 @@ Then strike the `:` key followed by `wq`.
 
 Finally string the `enter` key to save the changes.
 
-**Step 12** Now, reapply the manifest, `service.yaml` using the following command.
+**Step 11** Now, reapply the manifest, `service.yaml` using the following command.
 
 `kubectl apply -f service.yaml`
 
-**Step 13** Run the `curl` command again:
+**Step 12** Run the `curl` command again:
 
 `curl http://<MASTER_IP>:<NODE_PORT_IP>`
 
