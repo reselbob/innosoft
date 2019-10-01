@@ -191,12 +191,12 @@ metadata:
   name: business
 ```
 
-Behind the scenes that then the service is created, the DNS server that is running in the Kubernetes cluster will
+When the service, `business` is created, behind the scenes, the DNS server that is running in the Kubernetes cluster will
 create a DNS entry based on the service name, for example `http://business`. Each node in the cluster will be aware 
-of the DNS name and thus can route calls to the relevant service, which in turn will the pods associated with the service
-to do work.
+of the DNS name and thus can route calls to the relevant service, which in turn will route calls to the pods associated
+with the service to do work.
 
-To see this in action, find the `id` or `name` of a running pod in the cluster, like so
+To see this in action, `name` of a running pod in the cluster, like so:
 
 `kubectl get pods`
 
@@ -208,7 +208,7 @@ business-prod-76fdb56d4c-b9q2x   1/1     Running   0          12m
 frontend-prod-d54d657fc-lz9pv    1/1     Running   0          12m
 ```
 
-Now let's navigate into the a container so we can have a view of the world "inside" of the container.
+Now let's navigate into the a pod's container so we can have a view of the world "inside" of the cluster.
 
 `kubectl exec -it POD_NAME -- sh`
 
@@ -218,8 +218,10 @@ You'll be taken to the container's command prompt like so:
 
 `/app #`
 
-Once inside the pod, let's use [`nslookup`](https://linux.die.net/man/1/nslookup) to see if there is a mapping
-to the domain name, `business`. At the command prompt execute:
+Once inside the pod, let's use [`nslookup`](https://linux.die.net/man/1/nslookup) to see if there's a mapping
+to the domain name, `business`.
+
+At the command prompt execute:
 
 `nslookup business`
 
@@ -232,7 +234,8 @@ Name:      business
 Address 1: 10.99.246.170 business.default.svc.cluster.local
 ```
 The first line is really not an error. It's a known [bug](https://github.com/nicolaka/netshoot/issues/6)
-in the way the base alpine images handles `nslookup` in a container. The rest of the output is accurate.
+in the way the base image `node:8-alpine` handles `nslookup` in a container. The rest of the output is accurate.
+
 `nslookup` is reporting the binding of the domain name, `business` to the IP address, (in this case). `10.99.246.170`.
 
 In other words, once we created the service, `business`, Kubernetes used its internal DNS naming mechanism 
@@ -241,3 +244,5 @@ to make a DNS name, `business` that is well known within the cluster.
 You can `exit` the container using the following command:
 
 `exit`
+
+**LAB COMPLETE**
