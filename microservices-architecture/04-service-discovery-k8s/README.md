@@ -74,13 +74,12 @@ You'll get output similar to the following:
 
 This is the output we're expecting. Notice that the application is reporting the both the HTTP call to the `frontend` and the `business` services.
 
-**ANALYSIS**
+## ANALYSIS
 
 You might find it useful to review actual by clicking on this link to the application source
 code, [`index.js`](app/index.js).
-**ANALYSIS**
 
-Let's take a look at the Kubernetes service manifes file, [`service.yaml`](manifests/services.yaml).
+Let's take a look at the Kubernetes service manifest file, [`service.yaml`](manifests/services.yaml).
 
 ```yaml
 apiVersion: v1
