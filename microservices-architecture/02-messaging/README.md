@@ -9,5 +9,7 @@ Today GraphQL has a number of implementations in a variety of languages. You can
 GraphQL specification [here](https://graphql.github.io/graphql-spec/June2018/).
 
 To get experience using GraphQL take this hands on tutorial on Katacoda, found
-[here](https://katacoda.com/reselbob/scenarios/understanding-graphql-using-imbob).
+[here](https://katacoda.com/reselbob/scenarios/understanding-graphql-using-imbob). This tutorial
+has step by step interactive instructions as well as an introductory video at the beginning of each
+lesson.
 
