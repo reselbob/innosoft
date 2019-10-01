@@ -72,7 +72,9 @@ You'll get output similar to the following:
  http://business/ -> business-prod - 0.622secs
  http://worldclockapi.com/api/json/utc/now -> {"$id":"1","currentDateTime":"2019-10-01T18:37Z","utcOffset":"00:00:00","isDayLightSavingsTime":false,"dayOfTheWeek":"Tuesday","timeZoneName":"UTC","currentFileTime":132144286343135376,"ordinalDate":"2019-274","serviceResponse":null}`
 
-Notice that the application is reporting the both the HTTP call to the `frontend` and the `business` services.
+This is the output we're expecting. Notice that the application is reporting the both the HTTP call to the `frontend` and the `business` services.
+
+**ANALYSIS**
 
 You might find it useful to review actual by clicking on this link to the application source
 code, [`index.js`](app/index.js).
@@ -218,7 +220,7 @@ You'll be taken to the container's command prompt like so:
 `/app #`
 
 Once inside the pod, let's use [`nslookup`](https://linux.die.net/man/1/nslookup) to see if there is a mapping
-to the domain name, `business`. At the command prompt, execute
+to the domain name, `business`. At the command prompt execute:
 
 `nslookup business`
 
@@ -232,7 +234,7 @@ Address 1: 10.99.246.170 business.default.svc.cluster.local
 ```
 The first line is really not an error. It's a known [bug](https://github.com/nicolaka/netshoot/issues/6)
 in the way the base alpine images handles `nslookup` in a container. The rest of the output is accurate.
-`ndlookup` is reporting the binding of the domain name, `business` to the IP address, (in this case). `10.99.246.170`.
+`nslookup` is reporting the binding of the domain name, `business` to the IP address, (in this case). `10.99.246.170`.
 
 In other words, once we created the service, `business`, Kubernetes used its internal DNS naming mechanism 
 to make a DNS name, `business` that is well known within the cluster.
