@@ -44,8 +44,8 @@ on a Ubuntu virtual machine on Katacoda.
 
 ## Exercise 2: Build and run as Wise Sayings Docker container
 
-Within the directory `app`, we'll execute the commands necessary to run WiseSaying is a Docker
-container from within the Katacoda playground.
+Within the directory `app`, we'll execute the commands necessary to run WiseSaying as a [Docker
+container](https://www.docker.com/resources/what-container) from within the Katacoda playground.
 
 `https://katacoda.com/courses/ubuntu/playground`
 
@@ -57,7 +57,7 @@ In directory:
 
 `cd innosoft/microservices-architecture/01-wisesayings/app`
 
-We'll Use the Docker `build` command to create a container image for the Wise Sayings
+We'll Use the Docker [`build`](https://docs.docker.com/engine/reference/commandline/build/) command to create a container image for the Wise Sayings
 source code
 
 **Step 1:** Take a look at the Dockerfile we'll use to build the container image
@@ -89,7 +89,8 @@ image.
 to the container image, in this case, `reselbob/wisesayings:beta`
 * `.` (a period) indicates the Dockerfile can be found in the current directory (aka folder)
 
-**Step 3:** Create the container, giving it the name, `wisesayings`
+**Step 3:** Create the container using [`docker run`](https://docs.docker.com/engine/reference/commandline/run/), giving
+ the container the name, `wisesayings`
 
 `docker run -d --name wisesayings -p 3000:3000 reselbob/wisesayings:beta`
 
@@ -120,7 +121,7 @@ You'll get output similar to the following:
 }
 ```
 
-**Step 5:** Delete the container
+**Step 5:** Delete the container using the command, [`docker rm`](https://docs.docker.com/engine/reference/commandline/rm/)
 
 `docker rm -f wisesayings`
 
@@ -132,7 +133,7 @@ You'll get output similar to the following:
 running
 * `wisesayings` is the name of the container to delete
 
-**Step 6:** Delete the image
+**Step 6:** Delete the image using the command, [`docker rmi`](https://docs.docker.com/engine/reference/commandline/rmi/)
 
 `docker rmi -f reselbob/wisesayings:beta`
 
@@ -162,7 +163,7 @@ Deleted: sha256:49262dad0034c291e677d5d5d9fb81e5da9fd0705ecaeb2b4f265c2003e6ad5c
 In this exercise we're going to build out Wise Sayings as a Kubernetes Deployment and Service in a
 new Katacoda playground
 
-**Step 1:** Go to the `kubenetes` playground in Katacoda:
+**Step 1:** Go to the `kubernetes` playground in Katacoda:
 
 `https://katacoda.com/courses/kubernetes/playground`
 
@@ -180,7 +181,7 @@ to create the Kubernetes deployment and service
 `cd manifests`
 
 **Step 5:** Within the directory `manifests`, execute the following command to use the manifest,
-`deployment.yaml` to create the Kubernetes deployment:
+`deployment.yaml` to create the [Kubernetes deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/):
 
 `kubectl apply -f deployment.yaml`
 
@@ -189,7 +190,7 @@ You'll get output similar to the following:
 `deployment.extensions/wisesayings created`
 
 **Step 6:** Within the directory `manifests`, execute the following command to use the manifest,
-`service.yaml` to create the Kubernetes service:
+`service.yaml` to create the [Kubernetes service](https://kubernetes.io/docs/concepts/services-networking/service/):
 
 `kubectl apply -f service.yaml`
 
@@ -197,7 +198,7 @@ You'll get output similar to the following:
 
 `service/wisesayings created`
 
-**Step 7:** Find the IP address of cluster 
+**Step 7:** Find the IP address of cluster using the command, [`kubectl cluster-info`](https://v1-13.docs.kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#cluster-info)
 
 `kubectl cluster-info`
 
