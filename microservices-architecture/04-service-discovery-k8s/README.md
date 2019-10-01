@@ -22,23 +22,60 @@ are defined in the manifest file, [`deployments.yaml`](manifests/deployments.yam
 
 `kubectl apply -f manifests/deployments.yaml`
 
+You'll get the following output:
+
+```text
+deployment.extensions/frontend-prod created
+deployment.extensions/business-prod created
+```
+
 **Step 5:** To create the services that binds to the deployments we'll use the manifest file
 [`service.yaml`](manifests/services.yaml). Execute the following command:
 
 `kubectl apply -f manifests/services.yaml`
 
+You'll get the following output:
+
+```text
+service/frontend created
+service/business created
+```
+
 **Step 6:** Get the NodePort IP
 
 `kubectl get services |grep NodePort`
+
+You'll get output similar to the following:
+
+`frontend     NodePort    10.100.223.219   <none>        80:30392/TCP   31s`
 
 **Step 7:** Get the master IP address
 
 `kubectl cluster-info`
 
-**Step 8:** Call the service
+You'll get output similar to the following:
+```text
+Kubernetes master is running at https://172.17.0.48:6443
+KubeDNS is running at https://172.17.0.48:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+```
+
+**Step 8:** Now combine the `MASTER_IP` with the `NODE_PORT` to create a url to `frontend` service.
 
 `curl http://MASTER_IP:NODE_PORT_IP`
 
+For example in this case: the call will be: 
+
+`curl http://172.17.0.48:30392`
+
+You'll get output similar to the following:
+`frontend-prod - 0.651secs
+ http://business/ -> business-prod - 0.622secs
+ http://worldclockapi.com/api/json/utc/now -> {"$id":"1","currentDateTime":"2019-10-01T18:37Z","utcOffset":"00:00:00","isDayLightSavingsTime":false,"dayOfTheWeek":"Tuesday","timeZoneName":"UTC","currentFileTime":132144286343135376,"ordinalDate":"2019-274","serviceResponse":null}`
+
+Notice that the application is reporting the both the HTTP call to the `frontend` and the `business` services.
+
+You might find it useful to review actual by clicking on this link to the application source
+code, [`index.js`](app/index.js).
 **ANALYSIS**
 
 Let's take a look at the Kubernetes service manifes file, [`service.yaml`](manifests/services.yaml).
@@ -111,7 +148,7 @@ spec:
         - name: UPSTREAM_URI
           value: "http://business/"
 ``` 
-Notice that the container in the deployment, `frontend-prod` (as shown above) has two declared to environment variables,
+Notice that the container in the deployment, `frontend-prod` (as shown above) has declared  two  environment variables,
 like so:
 
 ```yaml
@@ -121,8 +158,8 @@ env:
 - name: UPSTREAM_URI
   value: "http://business/"
 ```
-We're particularly  interested in the environment variable, `UPSTREAM_URI`. It's a custom environment variable and special to logic
-the application code stored in the Docker image, `reselbob/istiocode:v0.1`. The environment variable, `UPSTREAM_URI` tells
+We're particularly  interested in the environment variable, `UPSTREAM_URI`. It's a custom environment variable and special
+to the logic in the the application code stored in the Docker image, `reselbob/istiocode:v0.1`. The environment variable, `UPSTREAM_URI` tells
 the application the location of the web server that is running the business application logic, which in this case will
 be found at `http://business/`.
 
@@ -160,15 +197,46 @@ to do work.
 
 To see this in action, find the `id` or `name` of a running pod in the cluster, like so
 
-Enter get the pods environment variables using the command:
+`kubectl get pods`
 
-`kubectl exec -it <POD_NAME> -- printenv`
+You'll get output similar to the following:
+
+```text
+NAME                             READY   STATUS    RESTARTS   AGE
+business-prod-76fdb56d4c-b9q2x   1/1     Running   0          12m
+frontend-prod-d54d657fc-lz9pv    1/1     Running   0          12m
+```
+
+Now let's navigate into the a container so we can have a view of the world "inside" of the container.
+
+`kubectl exec -it POD_NAME -- sh`
+
+For example, `kubectl exec -it frontend-prod-d54d657fc-lz9pv -- sh`
+
+You'll be taken to the container's command prompt like so:
+
+`/app #`
+
+Once inside the pod, let's use [`nslookup`](https://linux.die.net/man/1/nslookup) to see if there is a mapping
+to the domain name, `business`. At the command prompt, execute
+
+`nslookup business`
 
 You get output similar to the following:
 
 ```text
+nslookup: can't resolve '(null)': Name does not resolve
 
+Name:      business
+Address 1: 10.99.246.170 business.default.svc.cluster.local
 ```
+The first line is really not an error. It's a known [bug](https://github.com/nicolaka/netshoot/issues/6)
+in the way the base alpine images handles `nslookup` in a container. The rest of the output is accurate.
+`ndlookup` is reporting the binding of the domain name, `business` to the IP address, (in this case). `10.99.246.170`.
 
-Notice the DNS entry:
+In other words, once we created the service, `business`, Kubernetes used its internal DNS naming mechanism 
+to make a DNS name, `business` that is well known within the cluster.
 
+You can `exit` the container using the following command:
+
+`exit`
