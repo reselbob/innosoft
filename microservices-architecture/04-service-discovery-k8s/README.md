@@ -196,7 +196,7 @@ create a DNS entry based on the service name, for example `http://business`. Eac
 of the DNS name and thus can route calls to the relevant service, which in turn will route calls to the pods associated
 with the service to do work.
 
-To see this in action, `name` of a running pod in the cluster, like so:
+To see this in action, get the `name` of a running pod in the cluster, like so:
 
 `kubectl get pods`
 
