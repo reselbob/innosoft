@@ -7,7 +7,7 @@ deployment units:
 * Docker Container
 * Kubernetes Deployment and Service
 
-## To run as a standalone application
+## Exercise 1: Run as a standalone application
 
 In this exercise we'll build the application as a standalone Node.js application running
 on a Ubuntu virtual machine on Katacoda.
@@ -40,7 +40,7 @@ on a Ubuntu virtual machine on Katacoda.
 
 `curl localhost:3000`
 
-## To build and run as a Docker container
+## Exercise 2: Build and run as Wise Sayings Docker container
 
 Within the directory `app`, we'll execute the commands necessary to run WiseSaying is a Docker
 container.
@@ -113,7 +113,7 @@ running
 deleted even if it's associated with an existing container
 * `reselbob/wisesayings:beta` is the name of the container image to delete
 
-## To build and run within an existing Kubernetes cluster
+## Exercise 3: Build and run Wise Sayings within an existing Kubernetes cluster
 
 In this exercise we're going to build out Wise Sayings as a Kubernetes Deployment and Service
 
@@ -180,26 +180,3 @@ wisesayings   NodePort    10.110.190.64   <none>        3000:30758/TCP   2m2s
 
 You'll get output similar to the following:
 
-
-
-## Working with the WiseSaying service from within the cluster
-
-Now that we have Wise Saying running
-
-**Step 1:** Create a container which you'll access and use it's command line to take to the service `wisesayings` from
-within the cluster
-
-`kubectl run -it deployment-for-testing --image=busybox /bin/sh`
-
-From within the cluster use `wget` to access the service, `wisesayings.
-
-**Step 2:** To access the cluster, execute the following command:
-
-`wget -qO- http://wisesayings:3000`
-
-You should get something similar to:
-```text
-{
-    "saying": "The leopard does not change his spots."
--                    100% |***********************************************************|    58  0:00:00 ETA
-```
