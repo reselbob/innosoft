@@ -17,7 +17,7 @@ spec:
             secretKeyRef:
               key: B_SECRET
               name: mysecrets
-      image: "reselbob/pinger:v2.1"
+      image: reselbob/pinger:v2.1
       imagePullPolicy: Always
       name: simple-container
       ports:
