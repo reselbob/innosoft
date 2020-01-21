@@ -191,7 +191,7 @@ Open `service.yaml` in the `vi` editor like so:
 
 Strike the key, `i` to put `vi` into insert mode.
 
-And then make the change to `color:green` as shown below.
+And then make the change from `color: red` to `color:green` as shown below.
 
 ```yaml
 apiVersion: v1
