@@ -244,5 +244,3 @@ the deployment manifests to create the new deployment that has the "yellow" beha
 defined in the manifest file, [service.yaml](manifests/service.yaml).
 
 **LAB COMPLETE**
-
-
